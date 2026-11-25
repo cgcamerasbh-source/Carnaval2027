@@ -126,8 +126,16 @@
     function shareWhatsApp() {
       const days = document.getElementById("days").innerText;
       const url = window.location.href;
-      const text = encodeURIComponent(`Faltam so ${days} dias pro Carnaval 2027! Acompanhe a contagem oficial da turma aqui: ${url}`);
-      window.open(`https://whatsapp.com{text}`, '_blank');
+      const msg = "Faltam so " + days + " dias pro Carnaval 2027! Acompanhe a contagem oficial da turma aqui: " + url;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: 'Contagem Carnaval 2027',
+          text: msg
+        }).catch(function() {});
+      } else {
+        window.location.href = "https://wa.me" + encodeURIComponent(msg);
+      }
     }
 
     const canvas = document.getElementById('confetti');
