@@ -7,6 +7,16 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Contagem Carnaval 2027</title>
+
+  <!-- Ícone e Prévia para WhatsApp e Tela Inicial -->
+  <meta property="og:title" content="🎭 Contagem Carnaval 2027 - BH">
+  <meta property="og:description" content="Falta pouco pra gente ir pra rua! Acompanhe o cronômetro e as fotos da turma.">
+  <meta property="og:image" content="https://github.io">
+  <meta property="og:url" content="https://github.io">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="icone.png">
+  <link rel="apple-touch-icon" href="icone.png">
+
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -222,21 +232,23 @@
     let touchEndX = 0;
 
     gallery.addEventListener("touchstart", e => {
-      touchStartX = e.changedTouches[0].screenX;
+      touchStartX = e.changedTouches.screenX;
     }, { passive: true });
 
     gallery.addEventListener("touchend", e => {
-      touchEndX = e.changedTouches[0].screenX;
+      touchEndX = e.changedTouches.screenX;
       const diffX = touchStartX - touchEndX;
       if (Math.abs(diffX) > 40) {
         manualSlide(diffX > 0 ? 1 : -1);
       }
     }, { passive: true });
 
+    // Compartilhar no WhatsApp com link atualizado (?v=2)
     function shareWhatsApp() {
       const days = document.getElementById("days").innerText;
-      const url = window.location.href;
-      const msg = "Faltam so " + days + " dias pro Carnaval 2027! Acompanhe a contagem oficial da turma aqui: " + url;
+      const baseUrl = window.location.origin + window.location.pathname;
+      const shareUrl = baseUrl + "?v=2";
+      const msg = "🎭 Faltam só " + days + " dias pro Carnaval 2027! Acompanhe a contagem oficial e as fotos da turma aqui: " + shareUrl;
       window.location.href = "whatsapp://send?text=" + encodeURIComponent(msg);
     }
 
@@ -251,29 +263,3 @@
       for (let i = 0; i < 80; i++) {
         pieces.push({
           x: Math.random() * canvas.width,
-          y: -10,
-          w: Math.random() * 10 + 5,
-          h: Math.random() * 10 + 5,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          vy: Math.random() * 4 + 2,
-          vx: Math.random() * 4 - 2
-        });
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      pieces.forEach((p, i) => {
-        p.y += p.vy;
-        p.x += p.vx;
-        ctx.fillStyle = p.color;
-        ctx.fillRect(p.x, p.y, p.w, p.h);
-        if (p.y > canvas.height) pieces.splice(i, 1);
-      });
-      requestAnimationFrame(animate);
-    }
-    animate();
-    launchConfetti();
-  </script>
-</body>
-</html>
