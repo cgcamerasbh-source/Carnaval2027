@@ -7,6 +7,15 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Contagem Carnaval 2027</title>
+
+  <meta property="og:title" content="🎭 Contagem Carnaval 2027 - BH">
+  <meta property="og:description" content="Falta pouco pra gente ir pra rua! Acompanhe o cronômetro e as fotos da turma.">
+  <meta property="og:image" content="https://github.io">
+  <meta property="og:url" content="https://github.io">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="icone.png">
+  <link rel="apple-touch-icon" href="icone.png">
+
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,78 +53,27 @@
     }
     h1 { font-size: 2rem; margin-bottom: 8px; text-shadow: 2px 2px 0px rgba(0,0,0,0.2); }
     .subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 20px; }
-    .timer {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .box {
-      background: rgba(0, 0, 0, 0.25);
-      padding: 15px 5px;
-      border-radius: 16px;
-    }
+    .timer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+    .box { background: rgba(0, 0, 0, 0.25); padding: 15px 5px; border-radius: 16px; }
     .number { font-size: 1.8rem; font-weight: 700; color: #ffe600; display: block; }
     .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
-
-    /* Estilos da Galeria de Fotos */
     .gallery-wrapper {
-      position: relative;
-      width: 100%;
-      margin-bottom: 20px;
-      border-radius: 16px;
-      overflow: hidden;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      touch-action: pan-y;
-      user-select: none;
+      position: relative; width: 100%; margin-bottom: 20px; border-radius: 16px;
+      overflow: hidden; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.25);
+      touch-action: pan-y; user-select: none;
     }
-    .slides {
-      display: flex;
-      transition: transform 0.35s ease-out;
-    }
-    .slides img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      object-position: center;
-      flex-shrink: 0;
-      display: block;
-      pointer-events: none;
-    }
+    .slides { display: flex; transition: transform 0.35s ease-out; }
+    .slides img { width: 100%; height: 240px; object-fit: cover; object-position: center; flex-shrink: 0; display: block; pointer-events: none; }
     .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.45);
-      color: #fff;
-      border: none;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3;
+      position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.45);
+      color: #fff; border: none; width: 34px; height: 34px; border-radius: 50%; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 3;
     }
     .prev { left: 8px; }
     .next { right: 8px; }
-
     .btn {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      margin-top: 12px;
-      border: none;
-      border-radius: 50px;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s;
-      text-decoration: none;
+      display: block; width: 100%; padding: 15px; margin-top: 12px; border: none; border-radius: 50px;
+      font-family: 'Fredoka', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer;
     }
     .btn:active { transform: scale(0.96); }
     .btn-wpp { background: #25D366; color: #fff; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
@@ -129,15 +87,12 @@
   <div class="container">
     <h1>🎭 Carnaval 2027</h1>
     <p class="subtitle">Falta pouco pra gente ir pra rua!</p>
-    
     <div class="timer" id="timer">
       <div class="box"><span class="number" id="days">00</span><span class="label">Dias</span></div>
       <div class="box"><span class="number" id="hours">00</span><span class="label">Horas</span></div>
       <div class="box"><span class="number" id="minutes">00</span><span class="label">Min</span></div>
       <div class="box"><span class="number" id="seconds">00</span><span class="label">Seg</span></div>
     </div>
-
-    <!-- GALERIA DE FOTOS DA TURMA -->
     <div class="gallery-wrapper" id="gallery">
       <div class="slides" id="slides">
         <img src="IMG-20260214-WA0056.jpeg" alt="Carnaval BH">
@@ -158,40 +113,26 @@
       <button class="nav-btn prev" onclick="manualSlide(-1)">&#10094;</button>
       <button class="nav-btn next" onclick="manualSlide(1)">&#10095;</button>
     </div>
-
     <button class="btn btn-confetti" onclick="launchConfetti()">🎉 Jogar Confete</button>
     <button class="btn btn-wpp" onclick="shareWhatsApp()">📲 Mandar no Grupo</button>
-
     <p class="tip">💡 <strong>Dica:</strong> Toque nos <em>3 pontinhos</em> (Android) ou em <em>Compartilhar</em> (iPhone) e escolha <strong>"Adicionar &agrave; tela inicial"</strong> para instalar como app!</p>
   </div>
-
   <script>
     const targetDate = new Date("2027-01-22T18:00:00").getTime();
-
     function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
+      const diff = targetDate - new Date().getTime();
       if (diff <= 0) {
         document.getElementById("timer").innerHTML = "<h2 style='grid-column: span 4; color: #ffe600;'>🥳 &Eacute; CARNAVAL! BORA PRO BLOCO!</h2>";
         return;
       }
-
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = String(d).padStart(2, '0');
-      document.getElementById("hours").innerText = String(h).padStart(2, '0');
-      document.getElementById("minutes").innerText = String(m).padStart(2, '0');
-      document.getElementById("seconds").innerText = String(s).padStart(2, '0');
+      document.getElementById("days").innerText = String(Math.floor(diff / 86400000)).padStart(2, '0');
+      document.getElementById("hours").innerText = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+      document.getElementById("minutes").innerText = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+      document.getElementById("seconds").innerText = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
     }
-
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Embaralhar fotos em ordem aleatória ao abrir
     const slidesContainer = document.getElementById("slides");
     const images = Array.from(slidesContainer.children);
     for (let i = images.length - 1; i > 0; i--) {
@@ -200,17 +141,13 @@
       images.splice(j, 1);
     }
 
-    // Controle do Carrossel + Deslize com o Dedo (Swipe)
     let currentSlide = 0;
     const totalSlides = slidesContainer.children.length;
-
     function moveSlide(step) {
       currentSlide = (currentSlide + step + totalSlides) % totalSlides;
       slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
-
     let autoSlide = setInterval(() => moveSlide(1), 4000);
-
     function manualSlide(step) {
       clearInterval(autoSlide);
       moveSlide(step);
@@ -219,25 +156,17 @@
 
     const gallery = document.getElementById("gallery");
     let touchStartX = 0;
-    let touchEndX = 0;
-
-    gallery.addEventListener("touchstart", e => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
+    gallery.addEventListener("touchstart", e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
     gallery.addEventListener("touchend", e => {
-      touchEndX = e.changedTouches[0].screenX;
-      const diffX = touchStartX - touchEndX;
-      if (Math.abs(diffX) > 40) {
-        manualSlide(diffX > 0 ? 1 : -1);
-      }
+      const diffX = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diffX) > 40) manualSlide(diffX > 0 ? 1 : -1);
     }, { passive: true });
 
     function shareWhatsApp() {
       const days = document.getElementById("days").innerText;
-      const url = window.location.href;
-      const msg = "Faltam so " + days + " dias pro Carnaval 2027! Acompanhe a contagem oficial da turma aqui: " + url;
-      window.location.href = "whatsapp://send?text=" + encodeURIComponent(msg);
+      const shareUrl = window.location.origin + window.location.pathname + "?v=3";
+      const msg = "🎭 Faltam só " + days + " dias pro Carnaval 2027! Acompanhe a contagem oficial e as fotos da turma aqui: " + shareUrl;
+      window.open("https://whatsapp.com" + encodeURIComponent(msg), "_blank");
     }
 
     const canvas = document.getElementById('confetti');
@@ -245,29 +174,17 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     let pieces = [];
-
     function launchConfetti() {
       const colors = ['#ffe600', '#00f2fe', '#ff007f', '#25D366', '#ffffff'];
       for (let i = 0; i < 80; i++) {
-        pieces.push({
-          x: Math.random() * canvas.width,
-          y: -10,
-          w: Math.random() * 10 + 5,
-          h: Math.random() * 10 + 5,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          vy: Math.random() * 4 + 2,
-          vx: Math.random() * 4 - 2
-        });
+        pieces.push({ x: Math.random() * canvas.width, y: -10, w: Math.random() * 10 + 5, h: Math.random() * 10 + 5, color: colors[Math.floor(Math.random() * colors.length)], vy: Math.random() * 4 + 2, vx: Math.random() * 4 - 2 });
       }
     }
-
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       pieces.forEach((p, i) => {
-        p.y += p.vy;
-        p.x += p.vx;
-        ctx.fillStyle = p.color;
-        ctx.fillRect(p.x, p.y, p.w, p.h);
+        p.y += p.vy; p.x += p.vx;
+        ctx.fillStyle = p.color; ctx.fillRect(p.x, p.y, p.w, p.h);
         if (p.y > canvas.height) pieces.splice(i, 1);
       });
       requestAnimationFrame(animate);
